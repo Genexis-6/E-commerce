@@ -1,0 +1,29 @@
+{%extends 'base.html'%}
+    {%block title%}Register {%endblock%}
+{%block content%}
+
+ <!-- Wrapper to center the form -->
+ <div class="form-wrapper">
+   
+    <!-- Static form container -->
+    <div class="form-container">
+        {% block forget_pass%}
+        {% block form%}
+
+
+        {%endblock%}
+
+    </div>
+
+    <!-- Toggle Buttons below the forms -->
+    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        <a href="{{url_for('auth.register')}}" type="button" class="btn btn-outline-primary btn-sm px-4 gap-3">register-form</a>
+        <a href="{{url_for('auth.login')}}" type="button" class="btn btn-outline-primary btn-sm px-4">login-form</a>
+        
+      </div>
+      {%endblock%}
+</div>
+
+
+{%endblock%}
+

@@ -1,0 +1,16 @@
+{%extends 'forms.html'%}
+{% block title %}Login{% endblock %}
+{%block form%}
+
+<form id="loginForm" class="login-form active" method="POST" action="#">
+    <input type="hidden" name="formType" value="login">
+    <h3 id="form-title">Login</h3>
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" value="{{username}}" placeholder="Enter Username" required>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" placeholder="Enter Password" required>
+    <input type="submit" value="Submit" id="submit-btn">
+    <a href="{{url_for('email.reg_email')}}">forget password?</a>
+</form>
+
+{%endblock%}

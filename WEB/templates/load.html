@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Loading...</title>
+    <style>
+        
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: transparent;
+            
+        }
+        #loading {
+            text-align: center;
+        }
+
+        
+        .spinner {
+            border: 12px solid #f3f3f3; /* Light gray border */
+            border-top: 12px solid #3498db; /* Blue color for top border */
+            border-radius: 50%;
+            width: 80px; /* Adjust the size of the spinner */
+            height: 80px;
+            animation: spin 1s linear infinite;
+            margin-bottom: 10px; /* Space between spinner and text */
+        }
+
+       
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        
+        p {
+            font-family: Arial, sans-serif;
+            font-size: 1.2em;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div id="loading">
+        <div class="spinner"></div>
+        <p>Loading data, please wait...</p>
+        <p style="visibility: hidden;"></p>
+    </div>
+
+{%block load%}
+<script>
+    
+    window.onload = function() {
+        window.location.href = "{{ url_for('service.particular_product') }}";
+    };
+</script>
+{%endblock%}
+</body>
+</html>

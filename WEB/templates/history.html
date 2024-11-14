@@ -1,0 +1,50 @@
+{%extends 'home.html'%}
+{%block profile%}
+<div class="container">
+    <div class="table-container">
+        <table class="table table-bordered table-striped">
+            <thead class="table-light">
+                <tr>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    <th>Payment Menthod</th>
+                    <th>Address</th>
+                    <th>Payed Date</th>
+                </tr>
+            </thead>
+            <!-- Scrollable tbody -->
+            <tbody class="table-scrollable">
+                {% for item in get_record%}
+                <tr>
+                    <td>{{item.product_name}}</td>
+                    <td>{{item.price}}</td>
+                    <td>{{item.payment_method}}</td>
+                    <td>{{item.address}}</td>
+                    <td>{{item.date.strftime('%c')}}</td>
+                </tr>
+
+
+                {%endfor%}
+            </tbody>
+        </table>
+        <button class="btn btn-primary show-more-btn" id="view-more-btn">View More</button>
+    </div>
+</div>
+
+<script>
+    // JavaScript to handle the "View More" functionality
+    const viewMoreBtn = document.getElementById('view-more-btn');
+    const tableBody = document.querySelector('.table tbody');
+
+    viewMoreBtn.addEventListener('click', function() {
+        // Toggle the visibility of the table body
+        if (tableBody.style.display === "none" || tableBody.style.display === "") {
+            tableBody.style.display = "table-row-group"; // Show the rows
+            viewMoreBtn.textContent = "View Less"; // Change button text
+        } else {
+            tableBody.style.display = "none"; // Hide the rows
+            viewMoreBtn.textContent = "View More"; // Change button text back
+        }
+    });
+</script>
+{%endblock%}

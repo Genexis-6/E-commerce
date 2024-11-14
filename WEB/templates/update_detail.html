@@ -1,0 +1,16 @@
+{%extends 'forms.html'%}
+{%block title%} UPDATE {%endblock%}
+{%block forget_pass%}
+<form id="registerForm" class="login-form" method='post'>
+    <h3 id="form-title">Update Password</h3>
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" placeholder="Enter Username" required value="{{username}}" readonly>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" placeholder="Enter Email" required value="{{email}}" readonly>
+    <label for="phone">Phone Number:</label>
+    <input type="phone" id="phone" name="phone" placeholder="Enter Phone Number" required value="{{phone}}" readonly>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" placeholder="Enter Password" required>
+    <input type="submit" value="Submit" id="submit-btn">
+</form>
+{%endblock%}

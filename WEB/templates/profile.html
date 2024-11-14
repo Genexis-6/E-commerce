@@ -1,0 +1,33 @@
+{%extends 'home.html'%}
+{% block title %}Profile page{% endblock %}
+{%block profile%}
+
+<div class="container">
+  <div class="col-lg-4">
+    {%if photo != 'empty'%}
+    <img src='{{url_for("static", filename = photo)}}' alt="" width="300" height="300" class="rounded-circle" style="object-fit: cover;">
+    {%else%}
+    <img src="{{url_for('static', filename = 'images/download.png')}}" alt="" alt="" width="300" height="300" class="rounded-circle" style="object-fit: cover;">
+    {%endif%}
+    <h2 class="fw-normal">{{username}}</h2>
+    <h6>{{email}}</h6>
+    <a href="{{url_for('home.delete_dp')}}" class="btn btn-outline-primary btn-sm px-4 gap-3">Remove Picture</a>
+  </div>
+ 
+
+  <form id="registerForm" class="login-form" method='post' enctype="multipart/form-data">
+    <h3 id="form-title">Update user details</h3>
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" placeholder="Enter Username" required value="{{username}}" style="color: black; justify-self: center;">
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" placeholder="Enter Email" required value="{{email}}" style="color: black; justify-self: center;">
+    <label for="phone">Phone Number:</label>
+    <input type="phone" id="phone" name="phone" placeholder="Enter Phone Number" required value="{{phone}}" style="color: black; justify-self: center;">
+    <label for="file" class="form-label">Upload profile picture:</label>
+    <input type="file" name="profile_photo" class="form-control form-control-sm" style="width: 250px; margin-bottom: 10px;">
+    <input type="submit" value="Update" class="btn btn-outline-primary btn-sm px-4 gap-3" style="width: 250px; justify-self: center;">
+</form>
+</div>
+
+
+{%endblock%}

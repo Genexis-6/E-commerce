@@ -1,0 +1,26 @@
+body {
+    background-image: none;
+    background-size: auto;
+    display: inline;
+    align-items: baseline;
+    height: 100vh;
+  }
+
+.table-container {
+    margin: 20px auto;
+    max-width: 100%;
+    overflow: hidden;
+}
+.table-scrollable {
+    max-height: 300px; /* Set a max height for the table body */
+    overflow-y: auto;  /* Enable vertical scrolling */
+}
+.table tbody {
+    display: none;  /* Initially hide the body of the table */
+}
+.show-more-btn {
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    cursor: pointer;
+}

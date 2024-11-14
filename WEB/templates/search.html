@@ -1,0 +1,39 @@
+{%extends'home.html'%}
+{%block profile%}
+<div class="container my-5" style="width: 100%;">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb p-3 bg-body-tertiary rounded-3">
+        <li class="breadcrumb-item">
+          <a class="link-body-emphasis" href="#">
+            <svg class="bi" width="16" height="16"><use xlink:href="#house-door-fill"></use></svg>
+            <span class="visually-hidden">Home</span>
+          </a>
+        </li>
+        <li class="breadcrumb-item">
+          <a class="link-body-emphasis fw-semibold text-decoration-none" href="#">{{value}}</a>
+        </li>
+      </ol>
+    </nav>
+  </div>
+<div class="container">
+    <div class="row row-cols-1 row-cols-md-3 row-cols-lg-5 g-4">
+        {%for num in range(output_length)%}
+        <div class="col">
+            <div class="card h-100">
+                <img src="{{output[num]['image']}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{output[num]['price']}}</h5>
+                    <p style="color: rgb(148, 152, 152); font-size: small;"><del>{{output[num]['initial_price']}}</del></p>
+                    <p style="color: red; font-size: smaller;">{{'-'+output[num]['discount']}}</p>
+                    <p class="card-text">{{output[num]['name']}}</p>
+                </div>
+                <div class="card-footer">
+                    <a href="{{url_for('service.search_loading',input_=value, name=output[num]['name'].replace('/','_'))}}">
+                      <small class="text-body-secondary">Check it out</small>
+                    </a>
+                </div>
+            </div>
+        </div>
+        {%endfor%}
+</div>
+{%endblock%}

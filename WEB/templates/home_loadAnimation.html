@@ -1,0 +1,10 @@
+{%extends 'load.html'%}
+
+{%block load%}
+<script>
+    
+    window.onload = function() {
+        window.location.href = "{{ url_for('home.index') }}";
+    };
+</script>
+{%endblock%}

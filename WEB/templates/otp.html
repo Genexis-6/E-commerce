@@ -1,0 +1,12 @@
+{%extends 'forms.html'%}
+{%block title%} OTP {%endblock%}
+{%block forget_pass%}
+<form id="registerForm" class="login-form" method='post'>
+    <h3 id="form-title">OTP</h3>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" placeholder="Enter Email" value="{{email}}" readonly>
+    <label for="password">OTP:</label>
+    <input type="password" id="password" name="otp" placeholder="Enter OTP" required>
+    <input type="submit" value="Submit" id="submit-btn">
+</form>
+{%endblock%}

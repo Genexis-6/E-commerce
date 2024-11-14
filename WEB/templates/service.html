@@ -1,0 +1,52 @@
+{%extends 'base.html'%}
+{% block title %}Category Search{% endblock %}
+{% block link %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+{% endblock %}
+{%block content%}
+{%block profile%}
+{% for head in range(heading_length)%}
+<div class="item">
+    <div class="container my-5" style="width: 100%;">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb p-3 bg-body-tertiary rounded-3">
+            <li class="breadcrumb-item">
+              <a class="link-body-emphasis" href="#">
+                <svg class="bi" width="16" height="16"><use xlink:href="#house-door-fill"></use></svg>
+                <span class="visually-hidden">Home</span>
+              </a>
+            </li>
+            <li class="breadcrumb-item">
+              <a class="link-body-emphasis fw-semibold text-decoration-none" href="#">{{heading[head]}}</a>
+            </li>
+          </ol>
+        </nav>
+      </div>
+      <div class="container">
+        <div class="row row-cols-1 row-cols-md-3 row-cols-lg-5 g-4">
+          {%for num in range(data_length)%}
+          {%if heading[head] == data[num]['heading']%}
+          <div class="col">
+            <div class="card h-100">
+                <img src="{{data[num]['image_url']}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">₦ {{data[num]['price']}} </h5>
+                    <h5 class="card-title" style="color: rgb(91, 95, 98); font-size: small;"> <del>{{data[num]['previous_price']}} </del></h5>
+                    <p style="color: red; font-size: smaller;">{{data[num]['discount']}} off </p>
+                    <p class="card-text">{{data[num]['discription']}}</p>
+                </div>
+                <div class="card-footer">
+                    <a href="{{url_for('service.loading',product=data[num]['discription'].replace('/','_'))}}">
+                      <small class="text-body-secondary">Check it out</small>
+                    </a>
+                </div>
+            </div>
+        </div>
+          {%endif%}
+          {%endfor%}
+      </div>
+      
+</div>
+{%endfor%}
+{%endblock%}
+{%endblock%}

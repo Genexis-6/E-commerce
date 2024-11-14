@@ -1,0 +1,82 @@
+{%extends 'base.html'%}
+{% block title %}Goods{% endblock %}
+{% block link %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+{% endblock %}
+{%block content%}
+{%block profile%}
+<div class="container">
+    <div class="row mb-2">
+        <div class="col-md-6">
+          <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+            <div class="col p-4 d-flex flex-column position-static">
+              <strong class="d-inline-block mb-2 text-primary-emphasis"><del>{{output['previous_price']}}</del></strong>
+              <h3 class="mb-0">{{output['price']}}</h3>
+              <div class="mb-1 " style="color: red; font-size: smaller;">{{output['discount']}}</div>
+              <p class="card-text mb-auto">{{output['name']}}</p>
+            </div>
+            <div class="col-auto d-none d-lg-block">
+              <img src="{{output['img_url']}}" alt="" width="400" height="400" style="object-fit: cover;">
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-md-6">
+          <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+            <div class="col p-4 d-flex flex-column position-static">
+              <h3 class="mb-10" style="text-align: center; margin-bottom: 30px;">😁 Options 😎</h3>
+              {%if current_user.is_authenticated%}
+              <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                <a href="{{url_for('service.buy',tobuy=output['name'].replace('/', '_'))}}" type="button" class="btn btn-primary btn-larger px-4 gap-3">Buy now</a>
+                <a href="{{url_for('service.add_product', pname=output['name'].replace('/', '_'), price=output['price'])}}" type="button" class="btn btn-outline-secondary btn-larger px-4">Add to Cart</a>
+              </div>
+              {%else%}
+
+              <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                <a href="{{url_for('auth.login')}}" type="button" class="btn btn-primary btn-larger px-4 gap-3">Buy now</a>
+                <a href="{{url_for('auth.login')}}" type="button" class="btn btn-outline-secondary btn-larger px-4">Add to Cart <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16">
+                  <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+                  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+                </svg></a>
+
+              </div>
+              {%endif%}
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary">
+        <div class="col-lg-6 px-0">
+            <h1 class="display-4 fst-italic">Product Description</h1>
+            <p class="lead my-4">
+                <!-- Shortened text preview (first 100 characters) -->
+                {{ output['product_description'][:100] }}
+                <span id="more-text" style="display: none;">{{ output['product_description'][100:] }}</span>
+            </p>
+            <!-- "Read More/Less" toggle button -->
+            {% if output['product_description']|length > 100 %}
+                <button id="toggle-button" onclick="toggleText()" class="btn btn-primary btn-sm">Read More</button>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<script>
+    function toggleText() {
+        var moreText = document.getElementById("more-text");
+        var button = document.getElementById("toggle-button");
+        
+        if (moreText.style.display === "none") {
+            moreText.style.display = "inline";  // Show the hidden text
+            button.innerText = "Read Less";     // Update button text
+        } else {
+            moreText.style.display = "none";    // Hide the text again
+            button.innerText = "Read More";     // Revert button text
+        }
+    }
+</script>
+{%endblock%}
+{%endblock%}
